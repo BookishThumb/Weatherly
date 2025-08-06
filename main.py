@@ -6,8 +6,8 @@ st.title("Weather Description Generator")
 
 city = st.text_input("Enter your city name:")
 
-openweather_api_key = "55e6a9da875518aecf9380a4e503459c"
-genai_api_key = "AIzaSyBNR2g_CSmLe4qIvBZz-ZIR_siVudUNF4U"
+openweather_api_key = "Your_api"
+genai_api_key = "Your_api"
 
 if city:
     weather_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={openweather_api_key}&units=metric"
@@ -38,3 +38,4 @@ if city:
             st.error(f"Error fetching description from Gemini API: {str(e)}")
     else:
         st.error("City not found. Please check your spelling and try again!")
+
