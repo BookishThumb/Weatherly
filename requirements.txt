@@ -1,4 +1,5 @@
 streamlit
 requests
-from google import genai
+google-generativeai
+
 
