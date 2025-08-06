@@ -1,19 +1,15 @@
 import streamlit as st
-from google import genai
+import google.generativeai as genai
 import requests
-
 
 st.title("Weather Description Generator")
 
-
 city = st.text_input("Enter your city name:")
 
-# API Keys (Make sure to replace with your actual API keys)
-openweather_api_key = "API_KEY"  # Your openweather_api_key
-genai_api_key = "API_KEY"  # Your Gemini API key
+openweather_api_key = "55e6a9da875518aecf9380a4e503459c"
+genai_api_key = "AIzaSyBNR2g_CSmLe4qIvBZz-ZIR_siVudUNF4U"
 
 if city:
-
     weather_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={openweather_api_key}&units=metric"
     weather_response = requests.get(weather_url)
 
@@ -29,13 +25,10 @@ if city:
             f"Write a friendly and natural description of the weather."
         )
 
-        client = genai.Client(api_key=genai_api_key)
-
         try:
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=prompt
-            )
+            genai.configure(api_key=genai_api_key)
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(prompt)
 
             description = response.text
             st.success(description)
